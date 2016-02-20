@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Undeviating 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140322
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script>
+    
+function downloadE1(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.txt";
+    a.href = "data:text/plain," + document.getElementById("contentE1").innerHTML;
+    a.click();
+}
+    
+function downloadE2(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.txt";
+    a.href = "data:text/plain," + document.getElementById("contentE2").innerHTML;
+    a.click();
+
+}
+    
+function downloadE3(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.txt";
+    a.href = "data:text/plain," + document.getElementById("contentE3").innerHTML;
+    a.click();
+
+}
+    
+function downloadE4(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.txt";
+    a.href = "data:text/plain," + document.getElementById("contentE4").innerHTML;
+    a.click();
+
+}
+    
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<div id="navbar"></div>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+        	<span class="icon icon-cog"></span>
+			<h1><a href="#"><i>The Extra Credit Game</i></a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="active"><a href="#" accesskey="1" title="">Learn</a></li>
+				<li><a href="Enter.html" accesskey="2" title="">Enter</a></li>
+				<li><a href="Play.html" accesskey="3" title="">Play</a></li>
+				<!--<li><a href="#" accesskey="4" title="">Careers</a></li>
+				<li><a href="#" accesskey="5" title="">Contact Us</a></li>-->
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="wrapper">
+	<div id="banner" class="container"><img src="images/banner.jpg" width="1200" height="500" alt="" /></div>
+	<div id="welcome" class="container">
+    	
+<div class="title">
+	  <h2>Learn how to play:</h2>
+		</div>
+		<p><i>The Extra Credit Game</i> is a version of the classic itterated prisoner's dilemma simulation. You are a student seeking extra credit on a project you completed with a partner. You can either praise or rat on your partner, as can they, payoffs for each combination of actions are given on the <a href="Enter.html" accesskey="2" title="">Enter</a> page. Participants must write a <b>javascript</b> program that, given the current round number, and the history of both your, and your oppenents past moves, will return either <b>True</b> representing praising, or <b>False</b> representing ratting. </p>
+	</div>
+	<div id="three-column" class="container">
+		<div><span class="arrow-down"></span></div>
+		<div id="tbox1">
+			<div class="title">
+				<h2>Program</h2>
+			</div>
+			<p>Program your <b>Javascript</b> function based on the examples below. </p>
+			<a href="#" class="button">Learn More</a> </div>
+		<div id="tbox2">
+			<div class="title">
+				<h2>Submit</h2>
+			</div>
+			<p>Login and submit your team's code to the serve via the <a href="Enter.html" accesskey="2" title="">Enter</a> page.</p>
+			<a href="#" class="button">Learn More</a> </div>
+		<div id="tbox3">
+			<div class="title">
+				<h2>Compete</h2>
+			</div>
+			<p>When enough submissions are in, the games will begin. Every team's program will be played against all others for between 10 and 20 rounds. Check back on the play tab for recent results.</p>
+			<a href="#" class="button">Learn More</a> </div>
+	</div>
+	<div id="portfolio" class="container">
+		<div class="column1">
+			<div class="box">
+			  <h3>Example 1</h3>
+				<p>This program will rat every single round. Click the button below to download it. <div id="contentE1">
+    <!--exports.method = function(currentRound, opHistory, myHistory){
+    return false
+    }-->
+     <!-- The "<!--" and "-- >" are comments signs, remove them, and this sentence to get the program to run-->
+</div></p>
+		  <button class="button button-small" onClick="downloadE1()">Download!</button> </div>
+		</div>
+		<div class="column2">
+			<div class="box">
+			  <h3>Example 2</h3>
+				<p>This program will randomly choose wheather to rat or praise. Click the button below to download it. <div id="contentE2">
+    <!--exports.method = function(currentRound, opHistory, myHistory){
+    if (Math.random() > .5){
+        return true   
+    }
+    else{
+        return false   
+    }
+}
+    -->
+     <!-- The "<!--" and "-- >" are comments signs, remove them, and this sentence to get the program to run-->
+</div></p>
+		  <button class="button button-small" onClick="downloadE2()">Download!</button> </div>
+		</div>
+		<div class="column3">
+			<div class="box">
+			  <h3>Example 3</h3>
+				<p>This program will do whatever it's oppenent did the previous turn. Click the button below to download it. <div id="contentE3">
+    <!--exports.method = function(currentRound, opHistory, myHistory){
+    if (currentRound == 0){
+        return true   
+    }
+    if (opHistory[opHistory.length-1] == 0){
+        return false
+    }
+    if (opHistory[opHistory.length-1] == 1){
+        return true
+    }
+}-->
+     <!-- The "<!--" and "-- >" are comments signs, remove them, and this sentence to get the program to run-->
+</div></p>
+		  <button class="button button-small" onClick="downloadE3()">Download!</button> </div>
+		</div>
+		<div class="column4">
+			<div class="box">
+			  <h3>Example 4</h3>
+				<p>This program will choose a random first value, then do whatever it did the previous turn. Click the button below to download it. <div id="contentE4">
+    <!--exports.method = function(currentRound, opHistory, myHistory){
+    if (currentRound == 0){
+        if (Math.random() > .5){
+            return true   
+        }
+        else{
+            return false   
+        }   
+    }
+    if (myHistory[myHistory.length-1] == 0){
+        return false
+    }
+    if (myHistory[myHistory.length-1] == 1){
+        return true
+    }
+}-->
+     <!-- The "<!--" and "-- >" are comments signs, remove them, and this sentence to get the program to run-->
+</div></p>
+		  <button class="button button-small" onClick="downloadE4()">Download!</button> </div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<div class="container">
+		<div class="fbox1">
+		<span class="icon icon-map-marker"></span>
+			<span>131 East 28th Avenue
+			<br />San Mateo CA 94403</span>
+		</div>
+		<div class="fbox1">
+			<span class="icon icon-phone"></span>
+			<span>
+				Telephone: +1 650 289 8259
+			</span>
+		</div>
+		<div class="fbox1">
+			<span class="icon icon-envelope"></span>
+			<span>arun2642@gmail.com</span>
+		</div>
+	</div>
+</div>
+<div id="copyright">
+	<p>&copy; Galactec Corp. All rights reserved. | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+	<ul class="contact">
+		<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+		<li><a href="#" class="icon icon-facebook"><span></span></a></li>
+		<li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+		<li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+		<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+	</ul>
+</div>
+</body>
+</html>
