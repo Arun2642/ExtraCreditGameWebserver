@@ -22,7 +22,7 @@ var express = require('express'), app = module.exports = express();
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 var fs = require('fs');
@@ -35,7 +35,7 @@ var gitkitClient = new GitkitClient(JSON.parse(fs.readFileSync('./gitkit-server-
 // allows one to access other files
 app.use(express.static('public'));
 
-app.use('/public', express.static(__dirname + '/public'));  
+app.use('/public', express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 
 
@@ -44,6 +44,7 @@ app.get('/', renderIndexPage);
 
 // returning to index page
 app.get('/index.html', renderIndexPage);
+app.get('/Enter.html', renderEnterPage);
 
 // widget page hosting Gitkit javascript
 app.get('/gitkit', renderGitkitWidgetPage);
@@ -56,62 +57,103 @@ app.post('/sendemail', renderSendEmailPage);
 app.post('/receive', receive);
 
 function renderGitkitWidgetPage(req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  var html = new Buffer(fs.readFileSync('./gitkit-widget.html')).toString();
-  html = html.replace('%%postBody%%', encodeURIComponent(req.body || ''));
-  res.end(html);
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    var html = new Buffer(fs.readFileSync('./gitkit-widget.html')).toString();
+    html = html.replace('%%postBody%%', encodeURIComponent(req.body || ''));
+    res.end(html);
 }
 
 
 function receive(req, res) {
-    console.log('starting save')
-    var body = '';
-    filePath = __dirname + '/data.txt';
-    console.log('recorded file path')
-    body += req.body.data;
-    console.log('added data to body variable')
-        fs.appendFile(filePath, body, function() {
-            console.log('final part running')
-            var html = 'Your code has been saved!'
-            res.end(html);
+    if (req.cookies.gtoken) {
+        gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
+            if (err) {
+                printLoginInfo(res, 'Invalid token: ' + err);
+            } else {
+                console.log('starting save');
+                var body = '';
+                var filePath = __dirname + '/submission/' + resp.email + '.js';
+                console.log('recorded file path: ' + filePath);
+                body += req.body.data;
+                console.log('added data to body variable');
+                fs.writeFile(filePath, body, function () {
+                    console.log('final part running');
+                    var html = 'Your code has been saved!'
+                    res.redirect('Enter.html');
+                    res.end(html);
+                });
+            }
         });
-};
-
-function renderIndexPage(req, res) {
-  if (req.cookies.gtoken) {
-    gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
-      if (err) {
-        printLoginInfo(res, 'Invalid token: ' + err);
-      } else {
-        printLoginInfo(res, 'Welcome back! Login token is: ' + JSON.stringify(resp));
-      }
-    });
-  } else {
-    printLoginInfo(res, 'You are not logged in yet.');
-  }
+    } else {
+        printLoginInfo(res, 'You are not logged in yet.');
+    }
 }
 
-function renderSendEmailPage(req, res) {
-  app.disable('etag');
-  gitkitClient.getOobResult(req.body, req.ip, req.cookies.gtoken, function(err, resp) {
-    if (err) {
-      console.log('Error: ' + JSON.stringify(err));
+function renderIndexPage(req, res) {
+    if (req.cookies.gtoken) {
+        gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
+            if (err) {
+                printLoginInfo(res, 'Invalid token: ' + err);
+            } else {
+                printLoginInfo(res, 'Welcome back! Login token is: ' + JSON.stringify(resp));
+            }
+        });
     } else {
-      // Add code here to send email
-      console.log('Send email: ' + JSON.stringify(resp));
+        printLoginInfo(res, 'You are not logged in yet.');
     }
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end(resp.responseBody);
-  })
+}
+
+function renderEnterPage(req, res) {
+    if (req.cookies.gtoken) {
+        gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
+            if (err) {
+                printLoginInfo(res, 'Invalid token: ' + err);
+            } else {
+                var filePath = __dirname + '/submission/' + resp.email + '.js';
+                console.log('looking for file path: ' + filePath);
+                var program;
+                if (fs.existsSync(filePath)) {
+                    program = new Buffer(fs.readFileSync(filePath));
+                } else {
+                    console.log('looging for file path: ./Example.js');
+                    program = new Buffer(fs.readFileSync("./Example.js"));
+                }
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                var html = new Buffer(fs.readFileSync('./Enter.html'))
+                        .toString()
+                        .replace('%%program%%', program);
+                res.end(html);
+            }
+        });
+    } else {
+        var html = new Buffer(fs.readFileSync('./EnterLogin.html'))
+                .toString()
+        res.end(html);
+    }
+}
+
+
+function renderSendEmailPage(req, res) {
+    app.disable('etag');
+    gitkitClient.getOobResult(req.body, req.ip, req.cookies.gtoken, function (err, resp) {
+        if (err) {
+            console.log('Error: ' + JSON.stringify(err));
+        } else {
+            // Add code here to send email
+            console.log('Send email: ' + JSON.stringify(resp));
+        }
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
+        res.end(resp.responseBody);
+    })
 }
 
 function printLoginInfo(res, loginInfo) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  var html = new Buffer(fs.readFileSync('./index.html'))
-      .toString()
-      .replace('%%loginInfo%%', loginInfo);
-  res.end(html);
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    var html = new Buffer(fs.readFileSync('./index.html'))
+            .toString()
+            .replace('%%loginInfo%%', loginInfo);
+    res.end(html);
 }
 
 var port = 8000;

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="//www.gstatic.com/authtoolkit/js/gitkit.js"></script>
+        <link type=text/css rel=stylesheet href="//www.gstatic.com/authtoolkit/css/gitkit.css" />
+
+        <script type=text/javascript>
+            window.google.identitytoolkit.signInButton(
+                    '#navbar',
+                    {
+                        widgetUrl: "/gitkit",
+                        signOutUrl: "/"
+                    }
+            );
+
+
+        </script>
+
+        <script>
+
+            function downloadE1() {
+                var a = document.body.appendChild(
+                        document.createElement("a")
+                        );
+                a.download = "export.txt";
+                a.href = "data:text/plain," + document.getElementById("contentE1").innerHTML;
+                a.click();
+            }
+
+            function downloadE2() {
+                var a = document.body.appendChild(
+                        document.createElement("a")
+                        );
+                a.download = "export.txt";
+                a.href = "data:text/plain," + document.getElementById("contentE2").innerHTML;
+                a.click();
+
+            }
+
+            function downloadE3() {
+                var a = document.body.appendChild(
+                        document.createElement("a")
+                        );
+                a.download = "export.txt";
+                a.href = "data:text/plain," + document.getElementById("contentE3").innerHTML;
+                a.click();
+
+            }
+
+            function downloadE4() {
+                var a = document.body.appendChild(
+                        document.createElement("a")
+                        );
+                a.download = "export.txt";
+                a.href = "data:text/plain," + document.getElementById("contentE4").innerHTML;
+                a.click();
+
+            }
+        </script>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
+        <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+        <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+    </head>
+    <body>
+        <div id="navbar"></div>    
+        <div id="header-wrapper">
+            <div id="header" class="container">
+                <div id="logo">
+                    <!--<span class="icon icon-cog"></span>-->
+                    <h1><a href="#"><i>The Extra Credit Game</i></a></h1>
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li><a href="Index.html" accesskey="1" title="">Learn</a></li>
+                        <li class="active"><a href="#" accesskey="2" title="">Enter</a></li>
+                        <li><a href="Play.html" accesskey="3" title="">Play</a></li>
+                        <!--<li><a href="#" accesskey="4" title="">Careers</a></li>
+                        <li><a href="#" accesskey="5" title="">Contact Us</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div id="three-column" class="container">
+                <div><span class="arrow-down"></span></div>
+                <div id="abox1">
+                </div>
+                <div id="abox2">
+                    <div class="title">
+                        <h2>Submit and Edit:</h2>
+                    </div>
+                    <p>You can now submit and edit your team's <b>Javascript</b> function in the box below</p>
+
+                    <form method="post" action="receive">
+                        <textarea name="data" rows="10" cols="60">%%program%%</textarea>
+                        <br>
+                        <button class="button button-small">Submit</button>
+                    </form>
+                </div>
+                <div id="abox3">
+                </div>
+            </div>
+
+            <div id="footer">
+                <div class="container">
+                    <div class="fbox1">
+                        <span class="icon icon-map-marker"></span>
+                        <span>131 East 28th Avenue
+                            <br />San Mateo CA 94403</span>
+                    </div>
+                    <div class="fbox1">
+                        <span class="icon icon-phone"></span>
+                        <span>
+                            Telephone: +1 650 289 8259
+                        </span>
+                    </div>
+                    <div class="fbox1">
+                        <span class="icon icon-envelope"></span>
+                        <span>arun2642@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            <div id="copyright">
+                <p>&copy; Galactec Corp. All rights reserved. | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+                <ul class="contact">
+                    <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+                    <li><a href="#" class="icon icon-facebook"><span></span></a></li>
+                    <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+                    <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+                    <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+                </ul>
+            </div>
+    </body>
+</html>
+

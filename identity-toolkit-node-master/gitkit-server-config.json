@@ -2,7 +2,7 @@
   "clientId": "195681379978-fnl5i680n7t190nbc45mo95auhtvrsoc.apps.googleusercontent.com",
   "projectId": "maximal-storm-122223",
   "serviceAccountEmail": "service-acount-key@maximal-storm-122223.iam.gserviceaccount.com",
-  "serviceAccountPrivateKeyFile": "/Users/arujohn/Desktop/Desktop/Programing/Webserver/identity-toolkit-node-master/wxTRk92Li/google.pem",
+  "serviceAccountPrivateKeyFile": "/home/tonyj/Downloads/google.pem",
   "widgetUrl": "http://localhost:8000/gitkit",
   "cookieName": "gtoken"
 }
