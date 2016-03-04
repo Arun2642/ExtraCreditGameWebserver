@@ -45,7 +45,7 @@ app.get('/', renderIndexPage);
 // returning to index page
 app.get('/index.html', renderIndexPage);
 app.get('/Enter.html', renderEnterPage);
-//app.get('/play.html', renderPlayPage);
+app.get('/Play.html', renderPlayPage);
 
 // widget page hosting Gitkit javascript
 app.get('/gitkit', renderGitkitWidgetPage);
@@ -107,6 +107,35 @@ function renderIndexPage(req, res) {
 
 
 function renderEnterPage(req, res) {
+    if (req.cookies.gtoken) {
+        gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
+            if (err) {
+                printLoginInfo(res, 'Invalid token: ' + err);
+            } else {
+                var filePath = __dirname + '/submission/' + resp.email + '.js';
+                console.log('looking for file path: ' + filePath);
+                var program;
+                if (fs.existsSync(filePath)) {
+                    program = new Buffer(fs.readFileSync(filePath));
+                } else {
+                    console.log('looging for file path: ./Example.js');
+                    program = new Buffer(fs.readFileSync("./Example.js"));
+                }
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                var html = new Buffer(fs.readFileSync('./Enter.html'))
+                        .toString()
+                        .replace('%%program%%', program);
+                res.end(html);
+            }
+        });
+    } else {
+        var html = new Buffer(fs.readFileSync('./EnterLogin.html'))
+                .toString()
+        res.end(html);
+    }
+}
+
+function renderPlayPage(req, res) {
     if (req.cookies.gtoken) {
         gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
             if (err) {
