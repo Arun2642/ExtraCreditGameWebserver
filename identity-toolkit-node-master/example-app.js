@@ -45,6 +45,7 @@ app.get('/', renderIndexPage);
 // returning to index page
 app.get('/index.html', renderIndexPage);
 app.get('/Enter.html', renderEnterPage);
+app.get('/play.html', renderPlayPage);
 
 // widget page hosting Gitkit javascript
 app.get('/gitkit', renderGitkitWidgetPage);
@@ -90,6 +91,20 @@ function receive(req, res) {
 }
 
 function renderIndexPage(req, res) {
+    if (req.cookies.gtoken) {
+        gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
+            if (err) {
+                printLoginInfo(res, 'Invalid token: ' + err);
+            } else {
+                printLoginInfo(res, 'Welcome back! Login token is: ' + JSON.stringify(resp));
+            }
+        });
+    } else {
+        printLoginInfo(res, 'You are not logged in yet.');
+    }
+}
+
+function renderPlayPage(req, res) {
     if (req.cookies.gtoken) {
         gitkitClient.verifyGitkitToken(req.cookies.gtoken, function (err, resp) {
             if (err) {
