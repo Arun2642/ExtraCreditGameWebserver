@@ -141,26 +141,11 @@ function renderPlayPage(req, res) {
             if (err) {
                 printLoginInfo(res, 'Invalid token: ' + err);
             } else {
-                var filePath = __dirname + '/submission/' + resp.email + '.js';
-                console.log('looking for file path: ' + filePath);
-                var program;
-                if (fs.existsSync(filePath)) {
-                    program = new Buffer(fs.readFileSync(filePath));
-                } else {
-                    console.log('looging for file path: ./Example.js');
-                    program = new Buffer(fs.readFileSync("./Example.js"));
-                }
-                res.writeHead(200, {'Content-Type': 'text/html'});
-                var html = new Buffer(fs.readFileSync('./Enter.html'))
-                        .toString()
-                        .replace('%%program%%', program);
-                res.end(html);
+                printLoginInfo(res, 'Welcome back! Login token is: ' + JSON.stringify(resp));
             }
         });
     } else {
-        var html = new Buffer(fs.readFileSync('./EnterLogin.html'))
-                .toString()
-        res.end(html);
+        printLoginInfo(res, 'You are not logged in yet.');
     }
 }
 
