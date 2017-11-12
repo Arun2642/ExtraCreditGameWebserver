@@ -1,8 +1,8 @@
 {
-  "clientId": "195681379978-fnl5i680n7t190nbc45mo95auhtvrsoc.apps.googleusercontent.com",
+  "clientId": "195681379978-fnl5i6880n7t190nbc45mo95auhtvrsoc.apps.googleusercontent.com",
   "projectId": "maximal-storm-122223",
   "serviceAccountEmail": "service-acount-key@maximal-storm-122223.iam.gserviceaccount.com",
   "serviceAccountPrivateKeyFile": "/home/arun/private/google.pem",
-  "widgetUrl": "http://aruninc.com/gitkit",
+  "widgetUrl": "http://aruninc.com:8000/gitkit",
   "cookieName": "gtoken"
 }
